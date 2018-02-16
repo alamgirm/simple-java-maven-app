@@ -1,3 +1,4 @@
+env.DOCKERHUB_USERNAME = 'alamgirm'
 pipeline {
     //agent  any
      agent { 
@@ -27,5 +28,15 @@ pipeline {
                 }
             }
         }
+        // Build docker iamge
+        stage('BuildDockerImage') {
+            sh "docker build -t ${DOCKERHUB_USERNAME}/myapp:${BUILD_NUMBER} ."
+        }
+        // push the built image
+        stage("DockerPush") {
+            withDockerRegistry([credentialsId: 'DockerHub']) {
+            sh "docker push ${DOCKERHUB_USERNAME}/myapp:${BUILD_NUMBER}"
+      }
+    }
     }
 }
