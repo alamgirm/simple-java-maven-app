@@ -1,5 +1,11 @@
 pipeline {
-    agent any
+    //agent any
+      agent { 
+         node { 
+             label 'Jenkins Slave' 
+         } 
+     }
+
     /* agent {
         docker {
             image 'maven:3-alpine'
