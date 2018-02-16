@@ -1,7 +1,13 @@
 pipeline {
-    agent  any
-// I am not using a docker/maven image, rather a dedicated slave
-// to be controlled and used by the Jenkins Master
+    //agent  any
+     agent { 
+         node { 
+             label 'Jenkins Slave' 
+         } 
+     }
+    
+   // I am not using a docker/maven image, rather a dedicated slave
+    // to be controlled and used by the Jenkins Master
 /*
     agent {
         docker {
