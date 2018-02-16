@@ -2,7 +2,7 @@ pipeline {
     //agent any
       agent { 
          node { 
-             label 'Jenkins Slave' 
+             label 'jkslave' //Jenkins Slave 
          } 
      }
 
