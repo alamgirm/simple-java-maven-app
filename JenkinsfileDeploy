@@ -1,5 +1,5 @@
-env.DOCKERHUB_USERNAME = 'alamgirm'
-env.APPBUILD_ID = '16'
+env.DOCKERHUB_USERNAME='alamgirm'
+env.APPBUILDID='16'
 pipeline {
     //agent  any
      agent { 
@@ -11,7 +11,7 @@ pipeline {
         stage('PullDockerImage') {
             steps {
                   withDockerRegistry([credentialsId: 'dockerhub', url: 'https://hub.docker.com/']) {  
-                      sh 'docker pull "${env.DOCKERHUB_USERNAME}/myapp:${env.APPBUILD_ID}"'
+                      sh "docker pull ${DOCKERHUB_USERNAME}/myapp:${APPBUILD_ID}"
                   }
             }
         }
