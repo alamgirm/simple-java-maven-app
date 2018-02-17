@@ -11,7 +11,7 @@ pipeline {
         stage('PullDockerImage') {
             steps {
                   withDockerRegistry([credentialsId: 'dockerhub', url: 'https://hub.docker.com/']) {  
-                      sh 'docker pull ${env.DOCKERHUB_USERNAME}/myapp:${env.APPBUILD_ID}'
+                      sh 'docker pull "${env.DOCKERHUB_USERNAME}/myapp:${env.APPBUILD_ID}"'
                   }
             }
         }
