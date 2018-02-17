@@ -1,0 +1,24 @@
+env.DOCKERHUB_USERNAME = 'alamgirm'
+pipeline {
+    //agent  any
+     agent { 
+         node { 
+             label 'prodserver' //Production host node, set as slave in Jenkins 
+         } 
+     }
+    stages {
+        stage('PullDockerImage') {
+            steps {
+                  withDockerRegistry([credentialsId: 'dockerhub', url: 'https://hub.docker.com/']) {  
+                      sh 'docker pull ${DOCKERHUB_USERNAME}/myapp'
+                  }
+            }
+        }
+        
+        stage('RunDockerImage') { 
+            steps {
+                sh 'docker images' 
+            }
+        }
+    }
+}
